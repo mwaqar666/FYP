@@ -1,3 +1,4 @@
+const path = require('path');
 const SerialPort = require('serialport');
 const childProcess = require('child_process')
 
@@ -86,12 +87,12 @@ class ArduinoController {
     }
 
     predictDataFromModel = (inputData) => {
-        console.log('In JS start')
+        console.log(process.env.PYTHON_EXE);
         return new Promise((resolve, reject) => {
             const pythonProcess = childProcess.spawn(
-                'E:\\Anaconda\\envs\\FYP\\python.exe',
+                process.env.PYTHON_EXE,
                 [
-                    'C:\\Users\\Huzaifa Sohail\\OneDrive\\Desktop\\Project UI\\project-backend\\model.py',
+                    path.join(path.dirname(require.main.filename), 'model.py'),
                     inputData[0],
                     inputData[1],
                     inputData[2],
