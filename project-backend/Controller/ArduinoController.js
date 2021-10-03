@@ -18,7 +18,7 @@ class ArduinoController {
     }
 
     getArduinoConnection = () => {
-        const [arduinoPort, baudRate] = ['COM5', 9600];
+        const [arduinoPort, baudRate] = [process.env.ARDUINO_PORT, 9600];
 
         return new Promise((resolve, reject) => {
             const arduinoConnection = new SerialPort(arduinoPort, { baudRate }, (error) => {
